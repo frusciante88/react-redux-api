@@ -2,12 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import store from '../store';
 import UserList from './user-list'
+import { getUser } from '../actions/home-action';
+
+// function getUserSuccess(users) {
+//   return {
+//     type: types.GET_USER,
+//     users
+//   };
 
 const Home = React.createClass({
 
   componentDidMount: function() {
     let data = [{ id: 1, name : 'Alessandro' }, { id : 2, name : 'Emanuele'}];
-    store.dispatch(getUserSuccess(data));
+    store.dispatch(getUser(data));
   },
 
   render: function() {    
@@ -22,7 +29,7 @@ const Home = React.createClass({
 
 const mapStateToProps = function(store) {
   return {
-    users: store.userState.users
+    users: store.homeState.users
   };
 };
 

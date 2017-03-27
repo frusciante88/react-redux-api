@@ -1,6 +1,6 @@
 import * as types from '../actions/action-types';
 
-export function getUserSuccess(users) {
+export function getUser(users) {
   return {
     type: types.GET_USER,
     users

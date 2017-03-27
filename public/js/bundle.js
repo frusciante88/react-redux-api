@@ -66,7 +66,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	__webpack_require__(254).polyfill();
+	__webpack_require__(255).polyfill();
 	
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRedux.Provider,
@@ -21550,7 +21550,6 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// Combine Reducers
 	var reducers = (0, _redux.combineReducers)({
 	    homeState: _homeReduces2.default
 	});
@@ -21582,10 +21581,7 @@
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 	
 	var initialState = {
-	  users: [],
-	  userProfile: {
-	    repos: []
-	  }
+	  users: []
 	};
 	
 	var homeReducer = function homeReducer() {
@@ -21595,7 +21591,7 @@
 	
 	  switch (action.type) {
 	
-	    case types.GET_USERS:
+	    case types.GET_USER:
 	      return _extends({}, state, { users: action.users });
 	
 	  }
@@ -43784,41 +43780,6 @@
 	    { className: 'app' },
 	    _react2.default.createElement('header', { className: 'primary-header' }),
 	    _react2.default.createElement(
-	      'aside',
-	      { className: 'primary-aside' },
-	      _react2.default.createElement(
-	        'ul',
-	        null,
-	        _react2.default.createElement(
-	          'li',
-	          null,
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/', activeClassName: 'active' },
-	            'Home'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'li',
-	          null,
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/users', activeClassName: 'active' },
-	            'Users'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'li',
-	          null,
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/widgets', activeClassName: 'active' },
-	            'Widgets'
-	          )
-	        )
-	      )
-	    ),
-	    _react2.default.createElement(
 	      'main',
 	      null,
 	      props.children
@@ -43858,7 +43819,15 @@
 	
 	var _userList2 = _interopRequireDefault(_userList);
 	
+	var _homeAction = __webpack_require__(254);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// function getUserSuccess(users) {
+	//   return {
+	//     type: types.GET_USER,
+	//     users
+	//   };
 	
 	var Home = _react2.default.createClass({
 	  displayName: 'Home',
@@ -43866,7 +43835,7 @@
 	
 	  componentDidMount: function componentDidMount() {
 	    var data = [{ id: 1, name: 'Alessandro' }, { id: 2, name: 'Emanuele' }];
-	    _store2.default.dispatch(getUserSuccess(data));
+	    _store2.default.dispatch((0, _homeAction.getUser)(data));
 	  },
 	
 	  render: function render() {
@@ -43885,7 +43854,7 @@
 	
 	var mapStateToProps = function mapStateToProps(store) {
 	  return {
-	    users: store.userState.users
+	    users: store.homeState.users
 	  };
 	};
 	
@@ -43934,6 +43903,30 @@
 
 /***/ },
 /* 254 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.getUser = getUser;
+	
+	var _actionTypes = __webpack_require__(192);
+	
+	var types = _interopRequireWildcard(_actionTypes);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	function getUser(users) {
+	  return {
+	    type: types.GET_USER,
+	    users: users
+	  };
+	}
+
+/***/ },
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var require;/* WEBPACK VAR INJECTION */(function(process, global) {/*!
@@ -44072,7 +44065,7 @@
 	function attemptVertx() {
 	  try {
 	    var r = require;
-	    var vertx = __webpack_require__(255);
+	    var vertx = __webpack_require__(256);
 	    vertxNext = vertx.runOnLoop || vertx.runOnContext;
 	    return useVertxTimer();
 	  } catch (e) {
@@ -45098,7 +45091,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), (function() { return this; }())))
 
 /***/ },
-/* 255 */
+/* 256 */
 /***/ function(module, exports) {
 
 	/* (ignored) */
